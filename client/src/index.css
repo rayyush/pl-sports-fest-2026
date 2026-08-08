@@ -1,0 +1,2181 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: #111827;
+  background: #f5f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  background: #111827;
+  color: white;
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.nav-container {
+  width: min(1150px, 92%);
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #d1d5db;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.home {
+  flex: 1;
+}
+
+.hero {
+  min-height: 570px;
+  padding: 100px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background: radial-gradient(
+    circle at top,
+    #374151 0%,
+    #111827 55%,
+    #030712 100%
+  );
+
+  color: white;
+}
+
+.hero-label {
+  color: #fbbf24;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin-bottom: 25px;
+}
+
+.hero-description {
+  max-width: 650px;
+  color: #d1d5db;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+.primary-button {
+  display: inline-block;
+  background: #fbbf24;
+  color: #111827;
+
+  padding: 15px 28px;
+  border-radius: 10px;
+
+  font-weight: 800;
+  font-size: 16px;
+
+  transition: 0.2s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.25);
+}
+
+.home-info {
+  max-width: 850px;
+  margin: auto;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.home-info h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.home-info p {
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+/* =========================
+   COMMON PAGE
+========================= */
+
+.page {
+  width: min(1150px, 92%);
+  margin: 0 auto;
+  padding: 60px 0 80px;
+  flex: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-header > p:first-child {
+  color: #f59e0b;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.page-header h1 {
+  font-size: clamp(32px, 5vw, 50px);
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.page-header p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.page-header strong {
+  display: inline-block;
+  margin-top: 15px;
+  color: #b45309;
+  background: #fef3c7;
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 35px;
+  color: #4b5563;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.back-link:hover {
+  color: #111827;
+  transform: translateX(-3px);
+}
+
+/* =========================
+   TOURNAMENT CARDS
+========================= */
+
+.tournament-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.tournament-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 35px 30px;
+
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.tournament-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  width: 65px;
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fef3c7;
+  border-radius: 16px;
+
+  font-size: 34px;
+  margin-bottom: 25px;
+}
+
+.tournament-card h2 {
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.tournament-card p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.event-date {
+  display: inline-block;
+  color: #b45309;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.card-link {
+  margin-top: auto;
+  color: #111827;
+  font-weight: 800;
+}
+
+/* =========================
+   SPORTS
+========================= */
+
+.sport-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.sport-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  padding: 30px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+
+  transition: 0.25s ease;
+}
+
+.sport-card:hover {
+  transform: translateY(-6px);
+  border-color: #fbbf24;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.09);
+}
+
+.sport-icon {
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+
+.sport-card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.sport-card p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.sport-card span {
+  font-weight: 800;
+  color: #b45309;
+}
+
+/* =========================
+   SPORT HEADER
+========================= */
+
+.sport-header {
+  margin-bottom: 40px;
+}
+
+.large-icon {
+  font-size: 65px;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.category-card {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  padding: 22px 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+
+  transition: 0.2s ease;
+}
+
+.category-card:hover {
+  border-color: #fbbf24;
+}
+
+.category-card h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  display: inline-block;
+  color: #6b7280;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.register-button {
+  flex-shrink: 0;
+
+  background: #111827;
+  color: white;
+
+  padding: 11px 18px;
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.register-button:hover {
+  background: #f59e0b;
+  color: #111827;
+}
+
+/* =========================
+   REGISTRATION
+========================= */
+
+.registration-header {
+  background: white;
+  border-radius: 18px;
+  padding: 40px;
+  text-align: center;
+
+  max-width: 700px;
+  margin: 0 auto 30px;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.registration-header > span {
+  display: block;
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.registration-header h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.registration-header h2 {
+  color: #b45309;
+  margin-bottom: 15px;
+}
+
+.registration-header p {
+  color: #6b7280;
+  margin: 5px 0;
+}
+
+.coming-soon {
+  max-width: 700px;
+  margin: auto;
+
+  background: white;
+  border-radius: 18px;
+  padding: 40px;
+
+  text-align: center;
+
+  border: 2px dashed #d1d5db;
+}
+
+.coming-soon h2 {
+  margin-bottom: 10px;
+}
+
+.coming-soon p {
+  color: #6b7280;
+}
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-box {
+  max-width: 600px;
+  margin: 80px auto;
+
+  background: white;
+  border-radius: 20px;
+  padding: 60px 30px;
+
+  text-align: center;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+}
+
+.success-box h1 {
+  margin-bottom: 15px;
+}
+
+.success-box p {
+  color: #6b7280;
+}
+
+/* =========================
+   404
+========================= */
+
+.not-found {
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 80px;
+  margin-bottom: 10px;
+}
+
+.not-found p {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.not-found a {
+  font-weight: 700;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: #111827;
+  color: #9ca3af;
+
+  text-align: center;
+  padding: 25px 20px;
+
+  font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+  .tournament-grid,
+  .sport-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .hero {
+    min-height: 500px;
+    padding: 70px 20px;
+  }
+
+  .tournament-grid,
+  .sport-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page {
+    padding-top: 40px;
+  }
+
+  .category-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .register-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* =========================================
+   REGISTRATION FORM
+   ========================================= */
+
+.registration-form-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 40px auto 0;
+}
+
+.registration-form-header {
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  padding: 28px 30px;
+  margin-bottom: 24px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.registration-form-header h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+}
+
+.registration-form-header p {
+  margin: 6px 0;
+  color: #64748b;
+}
+
+.registration-form-header strong {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 22px;
+}
+
+/* Player card */
+
+.player-form-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  padding: 28px 30px;
+  margin-bottom: 20px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.player-form-card h3 {
+  margin: 0 0 24px;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Form fields */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+
+  margin-bottom: 8px;
+
+  color: #334155;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  font-size: 15px;
+  font-family: inherit;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+
+  background: #ffffff;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+/* Error */
+
+.form-error {
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  color: #dc2626;
+
+  padding: 12px 15px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  margin: 15px 0;
+}
+
+/* Bottom summary */
+
+.registration-form-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 20px;
+
+  padding: 22px 25px;
+
+  margin-top: 25px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.registration-form-footer > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.registration-form-footer span {
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.registration-form-footer strong {
+  font-size: 26px;
+}
+
+/* Button */
+
+.registration-form-footer .register-button {
+  border: none;
+
+  cursor: pointer;
+
+  padding: 13px 22px;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.registration-form-footer .register-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .registration-form-container {
+    margin-top: 25px;
+  }
+
+  .registration-form-header,
+  .player-form-card {
+    padding: 22px;
+  }
+
+  .registration-form-footer {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .registration-form-footer > div {
+    align-items: center;
+  }
+
+  .registration-form-footer .register-button {
+    width: 100%;
+  }
+}
+/* =========================================
+   REGISTRATION PAGE
+========================================= */
+
+.registration-summary {
+  width: 100%;
+  margin-top: 45px;
+}
+
+/* Selected sports container */
+.registration-items {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Individual registration */
+.registration-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+/* Top section */
+.registration-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.registration-item-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.registration-sport-icon {
+  font-size: 38px;
+  line-height: 1;
+}
+
+.registration-item-title h2 {
+  margin: 0;
+  font-size: 25px;
+  color: #111827;
+}
+
+.registration-item-title p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.registration-item-fee {
+  font-size: 23px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+/* Player count */
+.registration-player-count {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* Players */
+.registration-players {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.registered-player {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.registered-player h3 {
+  margin: 0 0 15px;
+  font-size: 16px;
+  color: #111827;
+}
+
+/* Player details */
+.player-details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.player-details-grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.player-details-grid span {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.player-details-grid strong {
+  font-size: 15px;
+  color: #111827;
+  word-break: break-word;
+}
+
+/* Remove button */
+.remove-registration {
+  margin-top: 20px;
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 9px 17px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.remove-registration:hover {
+  background: #fecaca;
+}
+
+/* =========================================
+   REGISTRATION SUMMARY CARD
+========================================= */
+
+.registration-total-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 30px;
+  margin-top: 25px;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.registration-total-card h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  color: #111827;
+}
+
+/* Summary rows */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+  color: #64748b;
+  font-size: 16px;
+}
+
+.summary-row strong {
+  color: #111827;
+  font-size: 16px;
+}
+
+.summary-divider {
+  height: 1px;
+  background: #cbd5e1;
+  margin: 8px 0 20px;
+}
+
+/* Total */
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.summary-total span {
+  font-size: 19px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.summary-total strong {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* =========================================
+   REGISTRATION ACTIONS
+========================================= */
+
+.registration-total-card {
+  display: block;
+}
+
+.summary-payment-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.add-more-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 9px;
+  color: #111827;
+  background: #f1f5f9;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.add-more-button:hover {
+  background: #e2e8f0;
+}
+
+.clear-registration {
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 12px 10px;
+  margin-left: 5px;
+}
+
+.clear-registration:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   EMPTY REGISTRATION
+========================================= */
+
+.empty-registration {
+  max-width: 650px;
+  margin: 60px auto;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 55px 30px;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+}
+
+.empty-registration-icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.empty-registration h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+}
+
+.empty-registration p {
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+  .registration-item {
+    padding: 20px;
+  }
+
+  .registration-item-top {
+    flex-direction: column;
+  }
+
+  .registration-item-fee {
+    font-size: 21px;
+  }
+
+  .player-details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .registration-total-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 500px) {
+  .player-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-item-title h2 {
+    font-size: 21px;
+  }
+
+  .registration-total-card {
+    padding: 18px;
+  }
+
+  .summary-total strong {
+    font-size: 24px;
+  }
+
+  .summary-payment-button,
+  .add-more-button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .clear-registration {
+    margin: 5px 0;
+  }
+}
+/* ================================
+   PAYMENT PAGE
+================================ */
+
+.payment-page {
+  padding-bottom: 80px;
+}
+
+.payment-container {
+  max-width: 900px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.payment-card {
+  background: #ffffff;
+  border: 1px solid #e2e6ee;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.payment-card-header {
+  margin-bottom: 24px;
+}
+
+.payment-card-header h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: #111827;
+}
+
+.payment-card-header p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* PAYMENT BREAKDOWN */
+
+.payment-breakdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-breakdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.payment-breakdown-item:last-child {
+  border-bottom: none;
+}
+
+.payment-sport-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.payment-sport-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 14px;
+  font-size: 27px;
+}
+
+.payment-sport-info h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  color: #111827;
+}
+
+.payment-sport-info p {
+  margin: 0 0 5px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.payment-sport-info span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.payment-breakdown-item > strong {
+  font-size: 19px;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.payment-total {
+  margin-top: 10px;
+  padding-top: 24px;
+  border-top: 2px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-total span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.payment-total strong {
+  font-size: 30px;
+  color: #111827;
+}
+
+/* QR */
+
+.qr-payment-card {
+  text-align: center;
+}
+
+.qr-payment-card .payment-card-header {
+  text-align: center;
+}
+
+.qr-placeholder {
+  width: 280px;
+  height: 280px;
+  margin: 20px auto 28px;
+  padding: 15px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 20px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-placeholder-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #475569;
+}
+
+.qr-placeholder-inner span {
+  font-size: 100px;
+  line-height: 1;
+}
+
+.qr-placeholder-inner strong {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.qr-placeholder-inner small {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.payment-instruction {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 15px 18px;
+  border-radius: 12px;
+  background: #fff7ed;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+}
+
+.payment-instruction span {
+  font-size: 20px;
+}
+
+.payment-instruction p {
+  margin: 0;
+  color: #7c2d12;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* UPLOAD */
+
+.upload-area {
+  min-height: 220px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-align: center;
+  padding: 20px;
+}
+
+.upload-area:hover {
+  border-color: #111827;
+  background: #f1f5f9;
+}
+
+.upload-icon {
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+
+.upload-area strong {
+  color: #111827;
+  font-size: 16px;
+}
+
+.upload-area span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.payment-screenshot-preview {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.payment-submit-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.payment-submit-section > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.payment-submit-section span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.payment-submit-section strong {
+  color: #111827;
+  font-size: 26px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .payment-container {
+    margin-top: 25px;
+  }
+
+  .payment-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .payment-breakdown-item {
+    align-items: flex-start;
+  }
+
+  .payment-sport-info {
+    align-items: flex-start;
+  }
+
+  .payment-sport-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 23px;
+  }
+
+  .payment-breakdown-item > strong {
+    font-size: 16px;
+  }
+
+  .payment-total strong {
+    font-size: 25px;
+  }
+
+  .qr-placeholder {
+    width: 230px;
+    height: 230px;
+  }
+
+  .payment-submit-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .payment-submit-section > div {
+    align-items: center;
+  }
+
+  .payment-submit-section button {
+    width: 100%;
+  }
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.admin-stat-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.admin-stat-card span {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.admin-stat-card strong {
+  font-size: 28px;
+}
+
+.admin-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-list-header h2 {
+  margin-bottom: 5px;
+}
+
+.admin-list-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.admin-registration-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-registration-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.admin-registration-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.admin-registration-type {
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.admin-registration-top h2 {
+  margin: 0;
+}
+
+.admin-registration-top p {
+  margin: 5px 0 0;
+  color: #6b7280;
+}
+
+.status-badge {
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.status-badge.verified {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.status-badge.rejected {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.admin-registration-details {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin: 24px 0;
+  padding: 18px;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.admin-registration-details span,
+.admin-player span {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.admin-registration-details strong {
+  font-size: 14px;
+}
+
+.admin-players {
+  margin-top: 20px;
+}
+
+.admin-players h3,
+.admin-payment h3 {
+  margin-bottom: 12px;
+}
+
+.admin-player {
+  display: grid;
+  grid-template-columns: 100px repeat(4, 1fr);
+  gap: 15px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.admin-player p {
+  margin: 0;
+}
+
+.admin-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.admin-payment h3 {
+  margin: 0 0 6px;
+}
+
+.admin-payment a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.admin-verify-button,
+.admin-reject-button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-verify-button {
+  background: #16a34a;
+  color: white;
+}
+
+.admin-reject-button {
+  background: #dc2626;
+  color: white;
+}
+
+.admin-error {
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-registration-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-player {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-registration-details {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-registration-top,
+  .admin-payment {
+    flex-direction: column;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   ADMIN LOGIN PAGE
+   ========================================================= */
+
+.admin-login-page {
+  min-height: calc(100vh - 80px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 60px 20px;
+
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(245, 158, 11, 0.08),
+      transparent 40%
+    ),
+    #f4f6fa;
+}
+
+/* =========================================================
+   WRAPPER
+   ========================================================= */
+
+.admin-login-wrapper {
+  width: 100%;
+  max-width: 470px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================================
+   BRANDING
+   ========================================================= */
+
+.admin-login-brand {
+  text-align: center;
+
+  margin-bottom: 28px;
+}
+
+.admin-brand-mark {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 16px;
+
+  border-radius: 16px;
+
+  background: #fff1c2;
+
+  font-size: 28px;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.admin-login-brand p {
+  margin: 0 0 8px;
+
+  color: #f59e0b;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.admin-login-brand h1 {
+  margin: 0 0 10px;
+
+  color: #111827;
+
+  font-size: 38px;
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.admin-login-brand span {
+  display: block;
+
+  color: #64748b;
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   LOGIN CARD
+   ========================================================= */
+
+.admin-login-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 20px;
+
+  padding: 36px;
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.admin-login-card-header {
+  margin-bottom: 28px;
+}
+
+.admin-login-card-header h2 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.admin-login-card-header p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.admin-form-group label {
+  color: #334155;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-form-group input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  border: 1px solid #d7dee8;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.admin-form-group input:focus {
+  border-color: #f59e0b;
+
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.admin-login-error {
+  padding: 12px 14px;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 9px;
+
+  background: #fef2f2;
+
+  color: #dc2626;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.admin-login-button {
+  width: 100%;
+
+  margin-top: 4px;
+
+  padding: 14px 18px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #111827;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-login-button:hover:not(:disabled) {
+  background: #1f2937;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.admin-login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.admin-login-button:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   CARD FOOTER
+   ========================================================= */
+
+.admin-login-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-top: 26px;
+  padding-top: 20px;
+
+  border-top: 1px solid #e5e7eb;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.admin-back-button {
+  margin-top: 22px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.admin-back-button:hover {
+  color: #111827;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .admin-login-page {
+    min-height: calc(100vh - 70px);
+
+    padding: 40px 16px;
+  }
+
+  .admin-login-brand h1 {
+    font-size: 32px;
+  }
+
+  .admin-login-brand p {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
+  .admin-login-card {
+    padding: 26px 22px;
+
+    border-radius: 16px;
+  }
+
+  .admin-login-footer {
+    flex-direction: column;
+
+    text-align: center;
+  }
+}
+
+.screenshot-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.screenshot-modal {
+  width: min(700px, 100%);
+  max-height: 90vh;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.screenshot-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #eee;
+}
+
+.screenshot-modal-header h2 {
+  margin: 0;
+}
+
+.screenshot-close-button {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.screenshot-modal-body {
+  padding: 20px;
+  max-height: calc(90vh - 80px);
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.screenshot-modal-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+.view-screenshot-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 18px;
+
+  border: 1px solid #d9dee8;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.view-screenshot-button:hover {
+  background: #f5f7fa;
+  border-color: #111827;
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.view-screenshot-button:active {
+  transform: translateY(0);
+}
+
+.admin-delete-section {
+  margin-top: 12px;
+}
+
+.admin-delete-button {
+  border: 1px solid #fecaca;
+  background: #fff1f2;
+  color: #dc2626;
+
+  padding: 10px 16px;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-delete-button:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  transform: translateY(-1px);
+}
