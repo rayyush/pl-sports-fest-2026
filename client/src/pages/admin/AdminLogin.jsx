@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import "../../index.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function AdminLogin() {
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ function AdminLogin() {
     try {
       setIsLoading(true);
 
-      const response = await fetch("http://localhost:5050/api/admin/login", {
+      const response = await fetch(`${API_URL}/api/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

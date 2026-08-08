@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useRegistrations } from "../../context/RegistrationContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Payment() {
   const navigate = useNavigate();
 
@@ -106,7 +108,7 @@ function Payment() {
       formData.append("totalAmount", totalAmount);
       formData.append("paymentScreenshot", paymentScreenshot);
 
-      const response = await fetch("http://localhost:5050/api/registrations", {
+      const response = await fetch(`${API_URL}/api/registrations`, {
         method: "POST",
         body: formData,
       });

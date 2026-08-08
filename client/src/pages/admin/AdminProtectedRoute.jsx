@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const API_URL = "http://localhost:5050";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminProtectedRoute() {
   const [checking, setChecking] = useState(true);
