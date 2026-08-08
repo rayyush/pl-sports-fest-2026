@@ -35,7 +35,7 @@ function RegistrationForm() {
   if (!tournament || !sport || !category) {
     return (
       <main className="page">
-        <h1>Registration not found</h1>
+        <h1>Registration Not Found</h1>
 
         <Link to="/tournament">← Back to Tournament</Link>
       </main>
@@ -65,7 +65,7 @@ function RegistrationForm() {
     setError("");
 
     if (alreadyRegistered) {
-      setError("You have already added this category.");
+      setError("You have already added this category to your cart.");
       return;
     }
 
@@ -113,7 +113,7 @@ function RegistrationForm() {
       <div className="page-header">
         <p>PL SPORTS FEST 2026</p>
 
-        <h1>Player Details</h1>
+        <h1>Add to Cart</h1>
 
         <p>
           {sport.name} — {category.name}
@@ -204,7 +204,7 @@ function RegistrationForm() {
             </div>
 
             <button type="submit" className="register-button">
-              Submit & Add Registration
+              Add to Cart →
             </button>
           </div>
         </form>

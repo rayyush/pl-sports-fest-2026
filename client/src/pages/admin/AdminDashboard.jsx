@@ -1,12 +1,67 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
+
+const sportOptions = [
+  "Table Tennis",
+  "Carrom",
+  "Chess",
+  "Pool",
+  "Basketball",
+  "Badminton",
+  "Tennis",
+  "Football",
+  "50m Race",
+  "Relay Race",
+  "Long Jump",
+];
+
+const ageGroupOptions = [
+  "Under 10",
+  "7-10",
+  "10-12",
+  "11-14",
+  "12-14",
+  "Under 14",
+  "14+ Open",
+  "15+",
+  "16+",
+  "60+",
+  "Open",
+];
+
+const genderOptions = ["Men", "Women", "Mixed", "Open"];
+
+const formatOptions = [
+  {
+    value: "singles",
+    label: "Singles",
+  },
+  {
+    value: "doubles",
+    label: "Doubles",
+  },
+  {
+    value: "mixed-doubles",
+    label: "Mixed Doubles",
+  },
+  {
+    value: "team",
+    label: "Team",
+  },
+];
 
 function AdminDashboard() {
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedScreenshot, setSelectedScreenshot] = useState(null);
+
+  const [sportFilter, setSportFilter] = useState("all");
+  const [ageFilter, setAgeFilter] = useState("all");
+  const [genderFilter, setGenderFilter] = useState("all");
+  const [formatFilter, setFormatFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const token = localStorage.getItem("adminToken");
 
@@ -125,6 +180,76 @@ function AdminDashboard() {
     0,
   );
 
+  // Get gender from the category name.
+  const getGender = (registration) => {
+    const categoryName = (registration.categoryName || "").toLowerCase();
+
+    if (categoryName.includes("mixed")) {
+      return "Mixed";
+    }
+
+    if (categoryName.includes("men")) {
+      return "Men";
+    }
+
+    if (categoryName.includes("women")) {
+      return "Women";
+    }
+
+    return "Open";
+  };
+
+  // Filter registrations
+  const filteredRegistrations = useMemo(() => {
+    return registrations.filter((registration) => {
+      const gender = getGender(registration);
+
+      const matchesSport =
+        sportFilter === "all" || registration.sportName === sportFilter;
+
+      const matchesAge =
+        ageFilter === "all" || registration.ageGroup === ageFilter;
+
+      const matchesGender = genderFilter === "all" || gender === genderFilter;
+
+      const matchesFormat =
+        formatFilter === "all" || registration.format === formatFilter;
+
+      const matchesStatus =
+        statusFilter === "all" || registration.status === statusFilter;
+
+      return (
+        matchesSport &&
+        matchesAge &&
+        matchesGender &&
+        matchesFormat &&
+        matchesStatus
+      );
+    });
+  }, [
+    registrations,
+    sportFilter,
+    ageFilter,
+    genderFilter,
+    formatFilter,
+    statusFilter,
+  ]);
+
+  const resetFilters = () => {
+    setSportFilter("all");
+    setAgeFilter("all");
+    setGenderFilter("all");
+    setFormatFilter("all");
+    setStatusFilter("all");
+  };
+
+  const hasActiveFilters =
+    sportFilter !== "all" ||
+    ageFilter !== "all" ||
+    genderFilter !== "all" ||
+    formatFilter !== "all" ||
+    statusFilter !== "all";
+
   if (loading) {
     return (
       <main className="page">
@@ -191,19 +316,163 @@ function AdminDashboard() {
         </button>
       </div>
 
+      {/* FILTERS */}
+
+      <div className="admin-filters">
+        <div className="admin-filters-header">
+          <div>
+            <h3>Filter Registrations</h3>
+
+            <p>
+              Showing {filteredRegistrations.length} of {registrations.length}{" "}
+              registrations
+            </p>
+          </div>
+
+          {hasActiveFilters && (
+            <button
+              type="button"
+              className="admin-reset-filters"
+              onClick={resetFilters}
+            >
+              Reset Filters
+            </button>
+          )}
+        </div>
+
+        <div className="admin-filter-grid">
+          {/* SPORT */}
+
+          <div className="admin-filter-group">
+            <label htmlFor="sport-filter">Sport</label>
+
+            <select
+              id="sport-filter"
+              value={sportFilter}
+              onChange={(e) => setSportFilter(e.target.value)}
+            >
+              <option value="all">All Sports</option>
+
+              {sportOptions.map((sport) => (
+                <option key={sport} value={sport}>
+                  {sport}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* AGE */}
+
+          <div className="admin-filter-group">
+            <label htmlFor="age-filter">Age Group</label>
+
+            <select
+              id="age-filter"
+              value={ageFilter}
+              onChange={(e) => setAgeFilter(e.target.value)}
+            >
+              <option value="all">All Age Groups</option>
+
+              {ageGroupOptions.map((age) => (
+                <option key={age} value={age}>
+                  {age}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* GENDER */}
+
+          <div className="admin-filter-group">
+            <label htmlFor="gender-filter">Gender</label>
+
+            <select
+              id="gender-filter"
+              value={genderFilter}
+              onChange={(e) => setGenderFilter(e.target.value)}
+            >
+              <option value="all">All</option>
+
+              {genderOptions.map((gender) => (
+                <option key={gender} value={gender}>
+                  {gender}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* FORMAT */}
+
+          <div className="admin-filter-group">
+            <label htmlFor="format-filter">Format</label>
+
+            <select
+              id="format-filter"
+              value={formatFilter}
+              onChange={(e) => setFormatFilter(e.target.value)}
+            >
+              <option value="all">All Formats</option>
+
+              {formatOptions.map((format) => (
+                <option key={format.value} value={format.value}>
+                  {format.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* STATUS */}
+
+          <div className="admin-filter-group">
+            <label htmlFor="status-filter">Status</label>
+
+            <select
+              id="status-filter"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="all">All Statuses</option>
+              <option value="pending">Pending</option>
+              <option value="verified">Verified</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       {/* REGISTRATIONS */}
 
-      {registrations.length === 0 ? (
+      {filteredRegistrations.length === 0 ? (
         <div className="empty-registration">
-          <div className="empty-registration-icon">📋</div>
+          <div className="empty-registration-icon">
+            {registrations.length === 0 ? "📋" : "🔍"}
+          </div>
 
-          <h2>No Registrations Yet</h2>
+          <h2>
+            {registrations.length === 0
+              ? "No Registrations Yet"
+              : "No Registrations Found"}
+          </h2>
 
-          <p>Submitted registrations will appear here.</p>
+          <p>
+            {registrations.length === 0
+              ? "Submitted registrations will appear here."
+              : "No registrations match the selected filters."}
+          </p>
+
+          {registrations.length > 0 && hasActiveFilters && (
+            <button
+              type="button"
+              className="admin-reset-filters"
+              onClick={resetFilters}
+            >
+              Reset Filters
+            </button>
+          )}
         </div>
       ) : (
         <div className="admin-registration-list">
-          {registrations.map((registration) => (
+          {filteredRegistrations.map((registration) => (
             <div className="admin-registration-card" key={registration._id}>
               {/* TOP */}
 
@@ -312,7 +581,6 @@ function AdminDashboard() {
               {/* ACTIONS */}
 
               <div className="admin-actions">
-                {/* Verify + Reject only available while pending */}
                 {registration.status === "pending" && (
                   <>
                     <button
@@ -342,6 +610,9 @@ function AdminDashboard() {
           ))}
         </div>
       )}
+
+      {/* SCREENSHOT MODAL */}
+
       {selectedScreenshot && (
         <div
           className="screenshot-modal-overlay"

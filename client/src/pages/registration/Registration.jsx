@@ -19,20 +19,26 @@ function Registration() {
         <div className="page-header">
           <p>PL SPORTS FEST 2026</p>
 
-          <h1>Your Registration</h1>
+          <h1>Your Cart</h1>
 
-          <span>You haven't added any sports yet.</span>
+          <span>
+            You haven't added any sports yet. Choose a sport and category to
+            start your registration.
+          </span>
         </div>
 
         <div className="empty-registration">
           <div className="empty-registration-icon">🏆</div>
 
-          <h2>No Sports Selected</h2>
+          <h2>Your Cart Is Empty</h2>
 
-          <p>Choose a sport and category to start your registration.</p>
+          <p>
+            Browse the available sports and add the categories you want to
+            register for.
+          </p>
 
           <Link to="/tournament" className="register-button">
-            Browse Sports
+            Browse Sports →
           </Link>
         </div>
       </main>
@@ -44,20 +50,35 @@ function Registration() {
       <div className="page-header">
         <p>PL SPORTS FEST 2026</p>
 
-        <h1>Your Registration</h1>
+        <h1>Your Cart</h1>
 
-        <span>Review your selected sports before continuing to payment.</span>
+        <span>
+          Review the sports you've added before proceeding to payment.
+        </span>
       </div>
 
       <div className="registration-summary">
-        {/* Selected Sports */}
+        {/* CART ITEMS */}
 
         <div className="registration-items">
+          <div className="admin-list-header">
+            <div>
+              <h2>Selected Events</h2>
+
+              <p>
+                {registrations.length}{" "}
+                {registrations.length === 1 ? "event" : "events"} in your cart
+              </p>
+            </div>
+          </div>
+
           {registrations.map((registration) => (
             <div
               className="registration-item"
               key={`${registration.type}-${registration.sportId}-${registration.categoryId}`}
             >
+              {/* TOP */}
+
               <div className="registration-item-top">
                 <div className="registration-item-title">
                   <span className="registration-sport-icon">
@@ -76,14 +97,32 @@ function Registration() {
                 </strong>
               </div>
 
+              {/* CATEGORY DETAILS */}
+
               <div className="registration-player-count">
-                {registration.players}{" "}
-                {registration.players === 1 ? "Player" : "Players"}
+                {registration.ageGroup && (
+                  <span>Age: {registration.ageGroup}</span>
+                )}
+
+                {registration.format && (
+                  <span>
+                    {registration.format
+                      .replace("-", " ")
+                      .replace(/\b\w/g, (letter) => letter.toUpperCase())}
+                  </span>
+                )}
+
+                <span>
+                  {registration.players}{" "}
+                  {registration.players === 1 ? "Player" : "Players"}
+                </span>
               </div>
 
-              {/* Player Details */}
+              {/* PLAYER DETAILS */}
 
               <div className="registration-players">
+                <h3>Player Details</h3>
+
                 {registration.playerDetails?.map((player, index) => (
                   <div className="registered-player" key={index}>
                     <h3>Player {index + 1}</h3>
@@ -113,6 +152,8 @@ function Registration() {
                 ))}
               </div>
 
+              {/* REMOVE */}
+
               <button
                 className="remove-registration"
                 onClick={() =>
@@ -123,19 +164,19 @@ function Registration() {
                   )
                 }
               >
-                Remove
+                Remove from Cart
               </button>
             </div>
           ))}
         </div>
 
-        {/* Summary */}
+        {/* CART SUMMARY */}
 
         <div className="registration-total-card">
-          <h2>Registration Summary</h2>
+          <h2>Cart Summary</h2>
 
           <div className="summary-row">
-            <span>Sports Selected</span>
+            <span>Events Selected</span>
 
             <strong>{registrations.length}</strong>
           </div>
@@ -158,7 +199,7 @@ function Registration() {
             className="register-button summary-payment-button"
             onClick={() => navigate("/payment")}
           >
-            Continue to Payment →
+            Proceed to Payment →
           </button>
 
           <Link to="/tournament" className="add-more-button">
@@ -166,7 +207,7 @@ function Registration() {
           </Link>
 
           <button className="clear-registration" onClick={clearRegistrations}>
-            Clear Registration
+            Clear Cart
           </button>
         </div>
       </div>

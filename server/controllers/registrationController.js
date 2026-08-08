@@ -6,25 +6,32 @@ const createRegistration = async (req, res) => {
     console.log("FILE:", req.file);
 
     const registrations = JSON.parse(req.body.registrations);
-
     const totalAmount = Number(req.body.totalAmount);
 
     if (!Array.isArray(registrations) || registrations.length === 0) {
       return res.status(400).json({
+        success: false,
         message: "No registrations found.",
       });
     }
 
     if (!req.file) {
       return res.status(400).json({
+        success: false,
         message: "Payment screenshot is required.",
       });
     }
 
-    const createdRegistrations = [];
+    if (!totalAmount || totalAmount <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid total amount.",
+      });
+    }
 
-    for (const registration of registrations) {
-      const newRegistration = await Registration.create({
+    // Create ONE MongoDB document for the complete submission
+    const newRegistration = await Registration.create({
+      registrations: registrations.map((registration) => ({
         type: registration.type,
         sportId: registration.sportId,
         sportName: registration.sportName,
@@ -39,20 +46,20 @@ const createRegistration = async (req, res) => {
         feePerPlayer: Number(registration.feePerPlayer),
         fee: Number(registration.fee),
 
-        playerDetails: registration.playerDetails,
+        playerDetails: registration.playerDetails || [],
+      })),
 
-        totalAmount,
+      totalAmount,
 
-        paymentScreenshot: req.file.filename,
-      });
+      paymentScreenshot: req.file.filename,
 
-      createdRegistrations.push(newRegistration);
-    }
+      status: "pending",
+    });
 
     res.status(201).json({
       success: true,
       message: "Registration submitted successfully.",
-      registrations: createdRegistrations,
+      registration: newRegistration,
     });
   } catch (error) {
     console.error("Create registration error:", error);

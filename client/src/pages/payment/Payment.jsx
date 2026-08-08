@@ -34,9 +34,11 @@ function Payment() {
         <div className="page-header">
           <p>PL SPORTS FEST 2026</p>
 
-          <h1>No Registration Found</h1>
+          <h1>Your Cart Is Empty</h1>
 
-          <span>Please select a sport before proceeding to payment.</span>
+          <span>
+            Please add at least one sport before proceeding to payment.
+          </span>
         </div>
 
         <div className="empty-registration">
@@ -45,11 +47,12 @@ function Payment() {
           <h2>No Sports Selected</h2>
 
           <p>
-            You need to add at least one sport before continuing to payment.
+            You need to add at least one sport to your cart before continuing to
+            payment.
           </p>
 
           <Link to="/tournament" className="register-button">
-            Browse Sports
+            Browse Sports →
           </Link>
         </div>
       </main>
@@ -105,7 +108,9 @@ function Payment() {
       const formData = new FormData();
 
       formData.append("registrations", JSON.stringify(registrations));
+
       formData.append("totalAmount", totalAmount);
+
       formData.append("paymentScreenshot", paymentScreenshot);
 
       const response = await fetch(`${API_URL}/api/registrations`, {
@@ -134,7 +139,7 @@ function Payment() {
   return (
     <main className="page payment-page">
       <Link to="/registration" className="back-link">
-        ← Back to Registration
+        ← Back to Cart
       </Link>
 
       <div className="page-header">
@@ -143,7 +148,7 @@ function Payment() {
         <h1>Complete Payment</h1>
 
         <span>
-          Pay the total amount using the QR code and upload the payment
+          Pay the total amount using the QR code and upload your payment
           screenshot below.
         </span>
       </div>
@@ -153,9 +158,9 @@ function Payment() {
 
         <section className="payment-card">
           <div className="payment-card-header">
-            <h2>Registration Summary</h2>
+            <h2>Your Cart</h2>
 
-            <p>Review your selected sports before making the payment.</p>
+            <p>Review all selected events before making the payment.</p>
           </div>
 
           <div className="payment-breakdown">
@@ -208,11 +213,11 @@ function Payment() {
 
           <div className="qr-placeholder">
             <div className="qr-placeholder-inner">
-              <span>▦</span>
-
-              <strong>QR CODE</strong>
-
-              <small>Payment QR will be added here</small>
+              <img
+                src="/payment-qr.jpg"
+                alt="Payment QR code"
+                className="payment-screenshot-preview"
+              />
             </div>
           </div>
 

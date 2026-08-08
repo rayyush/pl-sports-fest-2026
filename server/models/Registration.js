@@ -25,7 +25,7 @@ const playerSchema = new mongoose.Schema(
   { _id: false },
 );
 
-const registrationSchema = new mongoose.Schema(
+const sportRegistrationSchema = new mongoose.Schema(
   {
     type: {
       type: String,
@@ -81,16 +81,30 @@ const registrationSchema = new mongoose.Schema(
       type: [playerSchema],
       default: [],
     },
+  },
+  { _id: false },
+);
 
+const registrationSchema = new mongoose.Schema(
+  {
+    // All sports/categories selected in ONE form submission
+    registrations: {
+      type: [sportRegistrationSchema],
+      required: true,
+    },
+
+    // Total amount for the complete submission
     totalAmount: {
       type: Number,
       required: true,
     },
 
+    // One payment screenshot for the complete submission
     paymentScreenshot: {
       type: String,
       required: true,
     },
+
     status: {
       type: String,
       enum: ["pending", "verified", "rejected"],
